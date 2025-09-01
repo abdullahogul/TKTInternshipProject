@@ -47,3 +47,9 @@ dotnet restore
 dotnet build
 dotnet run
 ```
+## Seed Data
+- **Departments**: Human Resources, Marketing, Sales
+- **Users**: 3 users per department. 1 m-> List all tasks
+- `Get tasks/CreatedByMe ` --> List tasks created by user 
+- `Get tasks/MyDepartment` --> List tasks assigned to esuers department
+- `Post tasks/Create`      --> Create new task 
