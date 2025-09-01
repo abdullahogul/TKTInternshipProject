@@ -36,7 +36,7 @@ git clone https://github.com/abdullahogul/TKTInternshipProject.git
 
 ### 2. Configure Database
 - Open appsetting.json and check the connection string.
-```bash
+```
 "DefaultSQLConnection": "Server=(localdb)\\MSSQLLocalDB;Database=TaskMs;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
 ```
 - Make sure SQL Server running locally.
@@ -49,12 +49,13 @@ dotnet run
 ```
 ## Seed Data
 - **Departments**: Human Resources, Marketing, Sales
-- **Users**: 3 users per department. 1 m-> List all tasks
+- **Users**: 3 users per department. 1 manager 2 employees
 
-### Department
-- `Get departments/all`          --> List all 
+### Users
+- `Post users/login`             --> Login and receive JWT token.
+- `Get users/all`                --> List all users
 
-### Task
+### Tasks
 - `Get tasks/all`                --> List all tasks
 - `Get tasks/createdByMe `       --> List tasks created by user 
 - `Get tasks/mydepartment`       --> List tasks assigned to esuers department
@@ -62,6 +63,6 @@ dotnet run
 - `Patch tasks updatetaskbyme`   --> Update tasks created by user.
 - `Delete tasks/deletetasksbyme` --> Delete tasks created by user.
 
-### Users
-- `Post users/login`             --> Login and receive JWT token.
-- `Get users/all`                --> List all users
+### Department
+- `Get departments/all`          --> List all departments
+
