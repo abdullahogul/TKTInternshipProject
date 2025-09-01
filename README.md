@@ -68,7 +68,5 @@ dotnet run
 - `Get departments/all`                     --> List all departments
 
 ## Postman Collection
-- File: `TKTInternshipProject.postman_collection.json`
+- Postman collection and enviroment files are in docs folder.
 - Import into postman to test all API endpoints
-
- 
