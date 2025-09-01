@@ -1,7 +1,7 @@
 # TKT Internship Project - Task Management System Backend
 
 This project was developed for my internship at **Tarım Kredi Teknoloji**. 
-It is a backend API application for a **Task Management System**, built with **C# and .NET 9**.
+It is a backend API application for a **Task Management System**, built with **C#** and **.NET 9**.
 
 The project allows users to create, update, delete, and manage tasks within departments. 
 JWT authentication is implemented for secure access to the API.
@@ -52,17 +52,23 @@ dotnet run
 - **Users**: 3 users per department. 1 manager 2 employees
 
 ### Users
-- `Post users/login`             --> Login and receive JWT token.
-- `Get users/all`                --> List all users
+- `Post users/login`                       --> Login and receive JWT token.
+- `Get users/all`                          --> List all users
 
 ### Tasks
-- `Get tasks/all`                --> List all tasks
-- `Get tasks/createdByMe `       --> List tasks created by user 
-- `Get tasks/mydepartment`       --> List tasks assigned to esuers department
-- `Post tasks/creeate`           --> Create new task
-- `Patch tasks updatetaskbyme`   --> Update tasks created by user.
-- `Delete tasks/deletetasksbyme` --> Delete tasks created by user.
+- `Get Tasks/All`                          --> List all tasks
+- `Get Tasks/CreatedByMe `                 --> List tasks created by user 
+- `Get Tasks/MyDepartment`                 --> List tasks assigned to users department
+- `Post Tasks/Create`                      --> Create new task
+- `Patch Tasks/UpdateTaskByMe`             --> Update tasks created by user.
+- `Patch Tasks/UpdateStatusByDepartment`   --> Update task status assigned to users department.
+- `Delete Tasks/DeleteTaskByMe`            --> Delete tasks created by user.
 
 ### Department
-- `Get departments/all`          --> List all departments
+- `Get departments/all`                     --> List all departments
 
+## Postman Collection
+- File: `TKTInternshipProject.postman_collection.json`
+- Import into postman to test all API endpoints
+
+ 
