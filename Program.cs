@@ -33,9 +33,10 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
-// var scope = app.Services.CreateScope();
-// var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-// context.Database.Migrate();
+var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+context.Database.Migrate();
+
 app.UseAuthentication();
 
 app.UseHttpsRedirection();
