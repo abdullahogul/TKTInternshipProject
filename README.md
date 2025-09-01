@@ -50,6 +50,18 @@ dotnet run
 ## Seed Data
 - **Departments**: Human Resources, Marketing, Sales
 - **Users**: 3 users per department. 1 m-> List all tasks
-- `Get tasks/CreatedByMe ` --> List tasks created by user 
-- `Get tasks/MyDepartment` --> List tasks assigned to esuers department
-- `Post tasks/Create`      --> Create new task 
+
+### Department
+- `Get departments/all`          --> List all 
+
+### Task
+- `Get tasks/all`                --> List all tasks
+- `Get tasks/createdByMe `       --> List tasks created by user 
+- `Get tasks/mydepartment`       --> List tasks assigned to esuers department
+- `Post tasks/creeate`           --> Create new task
+- `Patch tasks updatetaskbyme`   --> Update tasks created by user.
+- `Delete tasks/deletetasksbyme` --> Delete tasks created by user.
+
+### Users
+- `Post users/login`             --> Login and receive JWT token.
+- `Get users/all`                --> List all users
