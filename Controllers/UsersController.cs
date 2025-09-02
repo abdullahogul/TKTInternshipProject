@@ -5,13 +5,11 @@ namespace TktInternshipProject.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly ApplicationDbContext _db;
-    private readonly IConfiguration _configuration;
     private readonly IJwtService _jwtService;
 
     public UsersController(ApplicationDbContext db, IConfiguration configuration, IJwtService jwtService)
     {
         _db = db;
-        _configuration = configuration;
         _jwtService = jwtService;
     }
     
