@@ -52,8 +52,9 @@ dotnet run
 - **Users**: 3 users per department. 1 manager 2 employees
 
 ### Users
-- `Post users/login`                       --> Login and receive JWT token.
-- `Get users/all`                          --> List all users
+- `Post  users/login`                      --> Login and receive JWT token.
+- `Get   users/all`                        --> List all users
+- `Patch users/ChangePassword`             --> Change users password
 
 ### Tasks
 - `Get Tasks/All`                          --> List all tasks
