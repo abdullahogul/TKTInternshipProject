@@ -15,4 +15,9 @@ public class UserMapper
             Role = user.Role
         };
     }
+
+    public static void UpdateEntity(User user, UserLoginDTO dto)
+    {
+        user.Password = dto.Password;
+    }
 }

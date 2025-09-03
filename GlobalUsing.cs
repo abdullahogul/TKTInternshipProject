@@ -2,7 +2,10 @@ global using TktInternshipProject.Models.DTOs;
 global using TktInternshipProject.Models.Entities;
 global using TktInternshipProject.Data;
 global using TktInternshipProject.Mappers;
-global using TktInternshipProject.Services;
+global using TktInternshipProject.Services.Interfaces;
+global using TktInternshipProject.Services.Security;
+
+global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.JsonPatch;
 global using Microsoft.AspNetCore.Mvc;
@@ -11,6 +14,7 @@ global using Microsoft.IdentityModel.Tokens;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Routing.Constraints;
+
 global using System.Text.Json.Serialization;
 global using System.Text;
 global using System.Security.Claims;

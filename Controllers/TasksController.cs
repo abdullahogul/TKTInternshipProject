@@ -3,15 +3,9 @@ namespace TktInternshipProject.Controllers;
 [Route("Tasks")]
 [ApiController]
 [Authorize]
-public class TasksController : ControllerBase
+public class TasksController(ApplicationDbContext db) : ControllerBase
 {
-    private readonly ApplicationDbContext _db;
-
-    public TasksController(ApplicationDbContext db, IConfiguration configuration, IJwtService jwtService)
-    {
-        _db = db;
-    }
-
+    private readonly ApplicationDbContext _db = db;
 
     [HttpGet("All")]
     [ProducesResponseType(StatusCodes.Status200OK)]

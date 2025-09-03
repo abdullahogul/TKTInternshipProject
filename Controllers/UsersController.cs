@@ -2,27 +2,47 @@ namespace TktInternshipProject.Controllers;
 
 [Route("Users")]
 [ApiController]
-public class UsersController : ControllerBase
+public class UsersController(ApplicationDbContext db, IJwtService jwtService, IPasswordHasherService passwordHasherService) : ControllerBase
 {
-    private readonly ApplicationDbContext _db;
-    private readonly IJwtService _jwtService;
+    private readonly ApplicationDbContext _db = db;
+    private readonly IJwtService _jwtService = jwtService;
+    private readonly IPasswordHasherService _passwordHasherService = passwordHasherService;
 
-    public UsersController(ApplicationDbContext db, IConfiguration configuration, IJwtService jwtService)
-    {
-        _db = db;
-        _jwtService = jwtService;
-    }
-    
     [HttpPost("Login")]
     public async Task<ActionResult> Login([FromBody] UserLoginDTO loginDto)
     {
-        var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email && u.Password == loginDto.Password);
+        var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email);
 
         if (user == null)
             return Unauthorized("Email or password incorrect");
 
+        bool isPasswordValid = _passwordHasherService.Verify(loginDto.Password, user.Password);
+
+        if (!isPasswordValid)
+            return Unauthorized("Email or password incorrect");
+
         var token = _jwtService.GenerateToken(user);
         return Ok(new { token });
+    }
+
+
+    [HttpPatch("ChangePassword")]
+    [Authorize]
+    public async Task<ActionResult> Update([FromBody] UserLoginDTO updateDto)
+    {
+        var userEmailClaim = User.FindFirst(ClaimTypes.Email);
+        if (userEmailClaim == null)
+            return Unauthorized("Email claim not found.");
+                  
+        var userEmail = userEmailClaim.Value;
+        var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+        var userPassword = _passwordHasherService.Hash(updateDto.Password);
+
+        updateDto.Password = userPassword;
+        UserMapper.UpdateEntity(user, updateDto);
+        await _db.SaveChangesAsync();
+
+        return NoContent();
     }
 
     [HttpGet("All")]

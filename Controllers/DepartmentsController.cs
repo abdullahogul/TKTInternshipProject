@@ -2,14 +2,9 @@ namespace TktInternshipProject.Controllers;
 
 [Route("Departments")]
 [ApiController]
-public class DepartmentsController : ControllerBase
+public class DepartmentsController(ApplicationDbContext db) : ControllerBase
 {
-    private readonly ApplicationDbContext _db;
-
-    public DepartmentsController(ApplicationDbContext db)
-    {
-        _db = db;
-    }
+    private readonly ApplicationDbContext _db = db;
 
     [HttpGet("All")]
     [ProducesResponseType(StatusCodes.Status200OK)]

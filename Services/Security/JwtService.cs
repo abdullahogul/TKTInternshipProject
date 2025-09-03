@@ -1,13 +1,8 @@
-namespace TktInternshipProject.Services;
+namespace TktInternshipProject.Services.Security;
 
-public class JwtService : IJwtService
+public class JwtService(IConfiguration configuration) : IJwtService
 {
-    private readonly IConfiguration _configuration;
-
-    public JwtService(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
+    private readonly IConfiguration _configuration = configuration;
 
     public string GenerateToken(User user)
     {
@@ -20,7 +15,9 @@ public class JwtService : IJwtService
             {
                 new Claim("userId", user.Id.ToString()),
                 new Claim("departmentId", user.DepartmentId.ToString()),
+                new Claim(ClaimTypes.Email, user.Email.ToString()),
             }),
+            
             Expires = DateTime.UtcNow.AddMinutes(double.Parse(jwtSettings["DurationInMinutes"])),
             Issuer = jwtSettings["Issuer"],
             Audience = jwtSettings["Audience"],

@@ -1,4 +1,4 @@
-namespace TktInternshipProject.Services;
+namespace TktInternshipProject.Services.Interfaces;
 
 public interface IJwtService
 {

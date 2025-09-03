@@ -1,3 +1,5 @@
+using TKTInternshipProject.Services.Security;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
@@ -8,6 +10,7 @@ builder.Services.AddControllers(option => { }).AddNewtonsoftJson().AddXmlDataCon
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IPasswordHasherService, PasswordHasherService>();
 
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.ASCII.GetBytes(jwtSettings["Key"]);
