@@ -14,12 +14,12 @@ public class UsersController(ApplicationDbContext db, IJwtService jwtService, IP
         var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email);
 
         if (user == null)
-            return Unauthorized("Email or password incorrect");
+            return Unauthorized("Email is incorrect");
 
         bool isPasswordValid = _passwordHasherService.Verify(loginDto.Password, user.Password);
 
         if (!isPasswordValid)
-            return Unauthorized("Email or password incorrect");
+            return Unauthorized("Password is incorrect");
 
         var token = _jwtService.GenerateToken(user);
         return Ok(new { token });
