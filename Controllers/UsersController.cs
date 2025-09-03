@@ -22,6 +22,7 @@ public class UsersController(ApplicationDbContext db, IJwtService jwtService, IP
             return Unauthorized("Password is incorrect");
 
         var token = _jwtService.GenerateToken(user);
+
         return Ok(new { token });
     }
 
@@ -30,12 +31,20 @@ public class UsersController(ApplicationDbContext db, IJwtService jwtService, IP
     [Authorize]
     public async Task<ActionResult> Update([FromBody] UserLoginDTO updateDto)
     {
+        if (updateDto == null)
+            return BadRequest("Invalid Data");
+
         var userEmailClaim = User.FindFirst(ClaimTypes.Email);
+
         if (userEmailClaim == null)
-            return Unauthorized("Email claim not found.");
-                  
+            return Unauthorized("Email is incorrect");
+
         var userEmail = userEmailClaim.Value;
         var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+
+        if (user.Password != updateDto.Password)
+            return Unauthorized("Password is incorrect");
+
         var userPassword = _passwordHasherService.Hash(updateDto.Password);
 
         updateDto.Password = userPassword;
@@ -57,6 +66,7 @@ public class UsersController(ApplicationDbContext db, IJwtService jwtService, IP
         .ThenBy(u => u.Name)
         .ToListAsync();
         var userDTOs = userList.Select(u => UserMapper.ToDTO(u, u.Department)).ToList();
+
         return Ok(userDTOs);
     }
 }

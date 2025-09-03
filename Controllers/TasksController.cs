@@ -118,6 +118,7 @@ public class TasksController(ApplicationDbContext db) : ControllerBase
     {
         if (updateDto == null)
             return BadRequest("Invalid data.");
+
         if (!Enum.IsDefined(typeof(Status), updateDto.Status))
             return BadRequest("Invalid status value.");
 
@@ -145,7 +146,7 @@ public class TasksController(ApplicationDbContext db) : ControllerBase
     public async Task<ActionResult> Delete([FromBody] GuidDTO request)
     {
         var taskId = request.Id;
-        
+
         if (taskId == Guid.Empty)
             return BadRequest("Invalid task ID.");
 
