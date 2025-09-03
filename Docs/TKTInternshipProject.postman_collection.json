@@ -26,7 +26,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"mary@company.com\",\r\n    \"password\": \"mery1234!\"\r\n}\r\n",
+					"raw": "{\r\n    \"email\": \"sedat@company.com\",\r\n    \"password\": \"sedat12345!\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -97,6 +97,80 @@
 			"response": []
 		},
 		{
+			"name": "Users/ChangePassword",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"sedat@company.com\",\r\n    \"password\": \"sedat1234!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/Users/ChangePassword",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"Users",
+						"ChangePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tasks/Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"AssignedDepartmentId\": \"FD9E1927-BAAA-4D65-8380-F7B0CB35BEED\",\r\n    \"Title\": \"Marketing Deneme\",\r\n    \"Description\": \"Sütleri pazarlayın adamın canını sıkmayın\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/Tasks/Create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"Tasks",
+						"Create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Tasks/All",
 			"event": [
 				{
@@ -144,34 +218,6 @@
 			"response": []
 		},
 		{
-			"name": "Tasks/CreatedByMe",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{URL}}/Tasks/CreatedByMe",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"Tasks",
-						"CreatedByMe"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Tasks/MyDepartment",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -212,7 +258,7 @@
 			"response": []
 		},
 		{
-			"name": "Tasks/Create",
+			"name": "Tasks/CreatedByMe",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -224,25 +270,16 @@
 						}
 					]
 				},
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"AssignedDepartmentId\": \"FD9E1927-BAAA-4D65-8380-F7B0CB35BEED\",\r\n    \"Title\": \"Marketing Deneme\",\r\n    \"Description\": \"Sütleri pazarlayın adamın canını sıkmayın\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "{{URL}}/Tasks/Create",
+					"raw": "{{URL}}/Tasks/CreatedByMe",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"Tasks",
-						"Create"
+						"CreatedByMe"
 					]
 				}
 			},
@@ -286,43 +323,6 @@
 			"response": []
 		},
 		{
-			"name": "Tasks/DeleteTaskByMe",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"Id\": \"0960D93B-C1F7-4137-95E9-08DDE604BB55\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{URL}}/Tasks/DeleteTaskByMe",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"Tasks",
-						"DeleteTaskByMe"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Tasks/UpdateStatusByDepartment",
 			"request": {
 				"auth": {
@@ -354,6 +354,43 @@
 					"path": [
 						"Tasks",
 						"UpdateStatusByDepartment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tasks/DeleteTaskByMe",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\": \"0960D93B-C1F7-4137-95E9-08DDE604BB55\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/Tasks/DeleteTaskByMe",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"Tasks",
+						"DeleteTaskByMe"
 					]
 				}
 			},
