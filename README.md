@@ -1,4 +1,4 @@
-# TKT Internship Project - Task Management System Backend
+# Task Management System Backend V1
 
 This project was developed for my internship at **Tarım Kredi Teknoloji**. 
 It is a backend API application for a **Task Management System**, built with **C#** and **.NET 9**.
